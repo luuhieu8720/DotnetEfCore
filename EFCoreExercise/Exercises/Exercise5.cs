@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,15 +13,16 @@ namespace EFCoreExercise.Exercises
         {
             using var dbContext = new DataContextFactory().CreateDbContext(new string[0]);
 
-            var innerJoin = from student in dbContext.Students
-                            join @class in dbContext.Classes
-                            on student.Class.Id equals @class.Id
-                            select new { student, @class };
+            var students = dbContext.Students
+                .Include(x => x.Class)
+                .Where(x => x.Class != null)
+                .Select(student => student)
+                .ToList();
 
-            return innerJoin.AsEnumerable()
-                            .GroupBy(s => s.@class.Name)
-                            .Select(g => g.OrderByDescending(s => s.student.Score)
-                            .First().student.Name)
+            return students.GroupBy(student => student.Class.Name)
+                           .Select(group => group.OrderBy(s => s.Score)
+                                                    .Last()
+                                                    .Name)
                             .ToList();
         }
     }
