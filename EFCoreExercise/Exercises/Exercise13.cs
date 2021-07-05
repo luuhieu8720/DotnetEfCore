@@ -12,7 +12,7 @@ namespace EFCoreExercise.Exercises
         {
             using var dbContext = new DataContextFactory().CreateDbContext(new string[0]);
             return dbContext.Students
-                            .Any(s => s.Class.Name.Equals("Class A")
+                            .Any(s => s.Class.Name == "Class A"
                             && s.Birthday.Year == year
                             && s.Score >= score);
         }
