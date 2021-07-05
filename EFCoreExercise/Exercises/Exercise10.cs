@@ -12,15 +12,11 @@ namespace EFCoreExercise.Exercises
         {
             using var dbContext = new DataContextFactory().CreateDbContext(new string[0]);
 
-            var innerJoin = from student in dbContext.Students
-                            join @class in dbContext.Classes
-                            on student.Class.Id equals @class.Id
-                            select new { student, @class };
+            var students = dbContext.Students.Select(student => student);
 
-            return innerJoin.AsEnumerable()
-                            .GroupBy(s => s.@class.Name)
-                            .Select(group => new[] { group.Count(), group.Count(s => s.student.Score > 8.0) })
-                            .ToList();
+            return students.GroupBy(s => s.Class.Name)
+                           .Select(group => new[] { group.Count(), group.Count(s => s.Score > 8.0) })
+                           .ToList();
         }                   
     }
 }
