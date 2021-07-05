@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace EFCoreExercise.Models
 {
-    public class Student
+    public class Students
     {
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         [ForeignKey(nameof(Id))]
-        public virtual Class Class { get; set; }
+        public virtual Classes Classes { get; set; }
         public DateTime Birthday { get; set; }
         public double? Score { get; set; }
     }
