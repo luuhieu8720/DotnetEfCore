@@ -12,8 +12,8 @@ namespace EFCoreExercise.Exercises
         {
             using var dbContext = new DataContextFactory().CreateDbContext(new string[0]);
 
-            var innerJoin = from student in dbContext.Student
-                            join @class in dbContext.Class
+            var innerJoin = from student in dbContext.Students
+                            join @class in dbContext.Classes
                             on student.Class.Id equals @class.Id
                             select new { student, @class };
 
