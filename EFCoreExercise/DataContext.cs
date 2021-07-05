@@ -20,6 +20,5 @@ namespace EFCoreExercise
         }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Student> Students { get; set; }
-
     }
 }

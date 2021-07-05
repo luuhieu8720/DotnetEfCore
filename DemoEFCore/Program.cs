@@ -13,7 +13,6 @@ namespace DemoEFCore
             {
                 Birthday = new DateTime(1990, 1, 1),
                 Name = "Tom",
-
             });
 
             dbContext.SaveChanges();
