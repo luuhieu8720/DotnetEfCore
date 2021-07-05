@@ -12,7 +12,7 @@ namespace EFCoreExercise.Exercises
         {
             using var dbContext = new DataContextFactory().CreateDbContext(new string[0]);
 
-            return dbContext.Student.Where(s => s.Name.Contains(x))
+            return dbContext.Students.Where(s => s.Name.Contains(x))
                                     .Select(s => s.Name)
                                     .ToList();
         }

@@ -12,8 +12,8 @@ namespace EFCoreExercise.Exercises
         {
             using var dbContext = new DataContextFactory().CreateDbContext(new string[0]);
             
-            return dbContext.Student
-                            .Where(s => s.Class.Name.Equals(className))
+            return dbContext.Students
+                            .Where(s => s.Classes.Name.Equals(className))
                             .Select(s => s.Name)
                             .ToList();
         }

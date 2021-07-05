@@ -11,7 +11,7 @@ namespace EFCoreExercise.Exercises
         public List<double?> FindAllScores()
         {
             using var dbContext = new DataContextFactory().CreateDbContext(new string[0]);
-            return dbContext.Student.Select(s => s.Score).Distinct().ToList();
+            return dbContext.Students.Select(s => s.Score).Distinct().ToList();
         }
     }
 }

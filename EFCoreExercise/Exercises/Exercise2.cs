@@ -11,7 +11,7 @@ namespace EFCoreExercise.Exercises
         public List<string> GetStudentsByYear(int year)
         {
             using var dbContext = new DataContextFactory().CreateDbContext(new string[0]);
-            return dbContext.Student.Where(s => s.Birthday.Year == year)
+            return dbContext.Students.Where(s => s.Birthday.Year == year)
                                     .Select(s => s.Name)
                                     .ToList();
         }

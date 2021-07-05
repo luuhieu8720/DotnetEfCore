@@ -11,7 +11,7 @@ namespace EFCoreExercise.Exercises
         public double GetScoreById(int studentId)
         {
             using var context = new DataContextFactory().CreateDbContext(new string[0]);
-            return context.Student.Where(s => s.Id == studentId)
+            return context.Students.Where(s => s.Id == studentId)
                                   .Select(s => s.Score)
                                   .First()
                                   .Value;

@@ -11,7 +11,7 @@ namespace EFCoreExercise.Exercises
         public List<string> ScoreLowerThanFiveStudents()
         {
             using var dbContext = new DataContextFactory().CreateDbContext(new string[0]);
-            return dbContext.Student.Where(s => s.Score < 5)
+            return dbContext.Students.Where(s => s.Score < 5)
                                     .Select(s => s.Name)
                                     .ToList();
         }

@@ -11,8 +11,8 @@ namespace EFCoreExercise.Exercises
         public List<string> RandomFiveStudentByClass(string className)
         {
             using var dbContext = new DataContextFactory().CreateDbContext(new string[0]);
-            return dbContext.Student
-                            .Where(s => s.Class.Name == className)
+            return dbContext.Students
+                            .Where(s => s.Classes.Name == className)
                             .Select(s => s.Name)
                             .Take(5)
                             .ToList();
