@@ -18,8 +18,8 @@ namespace EFCoreExercise
         {
 
         }
-        public DbSet<Class> Class { get; set; }
-        public DbSet<Student> Student { get; set; }
+        public DbSet<Classes> Classes { get; set; }
+        public DbSet<Students> Students { get; set; }
 
     }
 }
