@@ -11,7 +11,7 @@ namespace EFCoreExercise.Exercises
         public bool CheckStudent(int year, double score)
         {
             using var dbContext = new DataContextFactory().CreateDbContext(new string[0]);
-            return dbContext.Student
+            return dbContext.Students
                             .Any(s => s.Class.Name.Equals("Class A")
                             && s.Birthday.Year == year
                             && s.Score >= score);
