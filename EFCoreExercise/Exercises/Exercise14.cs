@@ -12,17 +12,13 @@ namespace EFCoreExercise.Exercises
         {
             using var dbContext = new DataContextFactory().CreateDbContext(new string[0]);
 
-            var innerJoin = from student in dbContext.Students
-                            join @class in dbContext.Classes
-                            on student.Class.Id equals @class.Id
-                            select new { student, @class };
+            var students = dbContext.Students.Where(x => x.Class.Name == className).ToList();
 
-            return innerJoin.AsEnumerable()
-                            .Where(s => s.@class.Name.Equals(className))
-                            .OrderBy(s => s.student.Name.Split(" ").Last())
-                            .ThenBy(s => s.student.Name.Split(" ").First())
-                            .Select(s => s.student.Name)
-                            .ToList();
+            return students.AsEnumerable()
+                           .OrderBy(s => s.Name.Split(" ").Last())
+                           .ThenBy(s => s.Name)
+                           .Select(s => s.Name)
+                           .ToList();
         }
     }
 }
