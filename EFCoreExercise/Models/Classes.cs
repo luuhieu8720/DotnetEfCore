@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EFCoreExercise.Models
 {
-    public class Class
+    public class Classes
     {
         public int Id { get; set; }
         public string Name { get; set; }
