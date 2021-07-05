@@ -14,7 +14,7 @@ namespace EFCoreExercise.Models
         public int Id { get; set; }
         public string Name { get; set; }
         [ForeignKey(nameof(Id))]
-        public virtual Classes Classes { get; set; }
+        public virtual Classes Class { get; set; }
         public DateTime Birthday { get; set; }
         public double? Score { get; set; }
     }

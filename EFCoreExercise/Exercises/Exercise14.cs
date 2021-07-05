@@ -14,7 +14,7 @@ namespace EFCoreExercise.Exercises
 
             var innerJoin = from student in dbContext.Students
                             join @class in dbContext.Classes
-                            on student.Classes.Id equals @class.Id
+                            on student.Class.Id equals @class.Id
                             select new { student, @class };
 
             return innerJoin.AsEnumerable()
