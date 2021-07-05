@@ -11,16 +11,13 @@ namespace EFCoreExercise.Exercises
         public string ClassHasHighestScore()
         {
             using var dbContext = new DataContextFactory().CreateDbContext(new string[0]);
+
+            var students = dbContext.Students.Select(student => student);
             
-            var innerJoin = from student in dbContext.Students
-                            join @class in dbContext.Classes
-                            on student.Class.Id equals @class.Id
-                            select new { student, @class };
-            return innerJoin.AsEnumerable()
-                            .GroupBy(student => student.@class.Name)
-                            .Select(group => new { className = group.Key, score = group.Average(s => s.student.Score) })
-                            .OrderByDescending(dict => dict.score)
-                            .First().className;
+            return students.GroupBy(student => student.Class.Name)
+                           .Select(group => new { className = group.Key, score = group.Average(s => s.Score) })
+                           .OrderByDescending(dict => dict.score)
+                           .First().className;
         }
     }
 }
